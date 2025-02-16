@@ -10,26 +10,26 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-public class APIService {
+open class APIService {
     private let apiKey: String
     private let baseURL: String
 
-    public init(apiKey: String, baseURL: String) {
+    open init(apiKey: String, baseURL: String) {
         self.apiKey = apiKey
         self.baseURL = baseURL
     }
 
-    public func fetchTVShowDetails(showId: Int) async throws -> JSON {
+    open func fetchTVShowDetails(showId: Int) async throws -> JSON {
         let url = "\(baseURL)/tv/\(showId)?api_key=\(apiKey)"
         return try await performRequest(url: url)
     }
 
-    public func fetchTVShowsList() async throws -> JSON {
+    open func fetchTVShowsList() async throws -> JSON {
         let url = "\(baseURL)/tv/popular?api_key=\(apiKey)"
         return try await performRequest(url: url)
     }
 
-    public func fetchSeasonDetails(showId: Int, seasonNumber: Int) async throws -> JSON {
+    open func fetchSeasonDetails(showId: Int, seasonNumber: Int) async throws -> JSON {
         let url = "\(baseURL)/tv/\(showId)/season/\(seasonNumber)?api_key=\(apiKey)"
         let seasonDetail = try await performRequest(url: url)
         return seasonDetail
